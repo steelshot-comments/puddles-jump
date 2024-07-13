@@ -2,7 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:ffi';
+//
+//
+//import 'dart:ffi';
 
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
@@ -137,7 +139,7 @@ class DoodleDash extends FlameGame
 
   void startGame() {
     initializeGameStart();
-    gameManager.state = GameState.playing;
+    gameManager.state = GameState.playing;//audio
     overlays.remove('mainMenuOverlay');
   }
 
@@ -147,7 +149,7 @@ class DoodleDash extends FlameGame
   }
 
   void onLose() {
-    gameManager.state = GameState.gameOver;
+    gameManager.state = GameState.gameOver;//audio
     player.removeFromParent();
     overlays.add('gameOverOverlay');
   }

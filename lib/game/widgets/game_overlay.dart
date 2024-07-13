@@ -27,7 +27,7 @@ class GameOverlayState extends State<GameOverlay> {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: SafeAreagit (
+      child: SafeArea (
         child: Stack(
           children: [
             Positioned(
@@ -70,10 +70,10 @@ class GameOverlayState extends State<GameOverlay> {
                         padding: const EdgeInsets.only(left: 24),
                         child: GestureDetector(
                           onTapDown: (details) {
-                            (widget.game as DoodleDash).player.moveLeft();
+                            (widget.game as DoodleDash).player.moveLeft(); //audio
                           },
                           onTapUp: (details) {
-                            (widget.game as DoodleDash).player.resetDirection();
+                            (widget.game as DoodleDash).player.resetDirection();//audio
                           },
                           child: Material(
                             color: Colors.transparent,
@@ -87,10 +87,10 @@ class GameOverlayState extends State<GameOverlay> {
                         padding: const EdgeInsets.only(right: 24),
                         child: GestureDetector(
                           onTapDown: (details) {
-                            (widget.game as DoodleDash).player.moveRight();
+                            (widget.game as DoodleDash).player.moveRight();//audio
                           },
                           onTapUp: (details) {
-                            (widget.game as DoodleDash).player.resetDirection();
+                            (widget.game as DoodleDash).player.resetDirection();//audio
                           },
                           child: Material(
                             color: Colors.transparent,

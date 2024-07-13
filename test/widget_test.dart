@@ -7,9 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flame_rive_doodle_dash_game/main.dart';
-
+//import 'package:flame_rive_doodle_dash_game/main.dart';
+import 'package:puddles_dash/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.

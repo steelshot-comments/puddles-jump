@@ -9,7 +9,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame_rive/flame_rive.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flame_audio/flame_audio.dart';
 import '../doodle_dash.dart';
 import 'sprites.dart';
 
@@ -100,15 +100,18 @@ class PlayerSprite extends SpriteGroupComponent<PlayerState>
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       moveLeft();
+      FlameAudio.play('jump.wav');
     }
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       moveRight();
+      FlameAudio.play('jump.wav');
     }
 
     // During development, its useful to "cheat"
     if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
       // jump();
+      FlameAudio.play('jump.wav');
     }
 
     return true;
@@ -336,15 +339,18 @@ class PlayerRive extends RiveComponent
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       moveLeft();
+      FlameAudio.play('jump.wav');
     }
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       moveRight();
+      FlameAudio.play('jump.wav');
     }
 
     // During development, its useful to "cheat"
     if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
       // jump();
+      FlameAudio.play('jump.wav');
     }
 
     return true;
