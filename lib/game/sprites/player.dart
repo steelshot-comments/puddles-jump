@@ -100,18 +100,18 @@ class PlayerSprite extends SpriteGroupComponent<PlayerState>
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       moveLeft();
-      FlameAudio.play('jump.wav');
+      
     }
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       moveRight();
-      FlameAudio.play('jump.wav');
+      
     }
 
     // During development, its useful to "cheat"
     if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
       // jump();
-      FlameAudio.play('jump.wav');
+      
     }
 
     return true;
@@ -128,6 +128,7 @@ class PlayerSprite extends SpriteGroupComponent<PlayerState>
     }
 
     _hAxisInput += movingLeftInput;
+    
   }
 
   @override
@@ -140,6 +141,7 @@ class PlayerSprite extends SpriteGroupComponent<PlayerState>
       current = PlayerState.right;
     }
     _hAxisInput += movingRightInput;
+   
   }
 
   @override
@@ -199,12 +201,15 @@ class PlayerSprite extends SpriteGroupComponent<PlayerState>
       other.removeFromParent();
       _removePowerupAfterTime(other.activeLengthInMS);
       jump(specialJumpSpeed: jumpSpeed * other.jumpSpeedMultiplier);
+      FlameAudio.play('flyy.wav');
       return;
+
     }
   }
 
   void jump({double? specialJumpSpeed}) {
     _velocity.y = specialJumpSpeed != null ? -specialJumpSpeed : -jumpSpeed;
+    FlameAudio.play('jump.wav');
   }
 
   void _removePowerupAfterTime(int ms) {
@@ -339,18 +344,18 @@ class PlayerRive extends RiveComponent
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       moveLeft();
-      FlameAudio.play('jump.wav');
+      
     }
 
     if (keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       moveRight();
-      FlameAudio.play('jump.wav');
+      
     }
 
     // During development, its useful to "cheat"
     if (keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
       // jump();
-      FlameAudio.play('jump.wav');
+      
     }
 
     return true;
