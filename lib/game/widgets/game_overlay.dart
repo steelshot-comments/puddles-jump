@@ -6,23 +6,29 @@ import 'dart:io' show Platform;
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-
+import '../managers/managers.dart';
+//import '../world.dart';
 import '../doodle_dash.dart';
 import 'widgets.dart';
+import '../sprites/player.dart';
 
 class GameOverlay extends StatefulWidget {
-  const GameOverlay(this.game, {super.key});
+  const GameOverlay(this.game,{super.key});
 
   final Game game;
-
+  //late Player player;
+  //Player player;
   @override
   State<GameOverlay> createState() => GameOverlayState();
 }
 
 class GameOverlayState extends State<GameOverlay> {
   bool isPaused = false;
+  bool isRestart=false;
   final bool isMobile = !kIsWeb && (Platform.isAndroid || Platform.isIOS);
-
+  //final World _world = World();
+  late Player player;
+  late  GameManager gameManager;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -34,6 +40,21 @@ class GameOverlayState extends State<GameOverlay> {
               top: 30,
               left: 30,
               child: ScoreDisplay(game: widget.game),
+            ),
+            Positioned(
+              top: 90,
+              right: 30,
+              child: ElevatedButton(
+                child: const Icon(
+                  Icons.refresh,
+                  size: 48,
+                ),
+                onPressed: () {
+                  (widget.game as DoodleDash).onrestart();
+
+                  },
+                  
+                  ),
             ),
             Positioned(
               top: 30,
@@ -58,6 +79,7 @@ class GameOverlayState extends State<GameOverlay> {
                 },
               ),
             ),
+          
             if (isMobile)
               Positioned(
                 bottom: MediaQuery.of(context).size.height / 4,
@@ -104,6 +126,24 @@ class GameOverlayState extends State<GameOverlay> {
                   ),
                 ),
               ),
+            if (isRestart)
+            Positioned(
+              top: MediaQuery.of(context).size.height / 2 - 72.0,
+              right: MediaQuery.of(context).size.height / 2 - 72.0,
+              
+                child: const Icon(
+                  Icons.refresh,
+                  size: 48,
+                  color: Colors.black12,
+                ),
+            ),
+
+
+
+
+              
+
+
             if (isPaused)
               Positioned(
                 top: MediaQuery.of(context).size.height / 2 - 72.0,

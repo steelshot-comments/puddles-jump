@@ -13,6 +13,7 @@ class GameOverOverlay extends StatelessWidget {
   const GameOverOverlay(this.game, {super.key});
 
   final Game game;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,7 @@ class GameOverOverlay extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   (game as DoodleDash).resetGame();
+                  
                 },
                 style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all(

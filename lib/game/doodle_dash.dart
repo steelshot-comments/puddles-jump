@@ -28,7 +28,7 @@ class DoodleDash extends FlameGame
   ObjectManager objectManager = ObjectManager();
 
   late Player player;
-
+  
   late Artboard artboard;
 
   @override
@@ -152,6 +152,12 @@ class DoodleDash extends FlameGame
     gameManager.state = GameState.gameOver;//audio
     player.removeFromParent();
     overlays.add('gameOverOverlay');
+  }
+  void onrestart(){
+    //audio
+    
+    player.removeFromParent();
+    startGame();
   }
 
   void togglePauseState() {
