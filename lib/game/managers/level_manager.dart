@@ -18,15 +18,27 @@ class LevelManager extends Component with HasGameRef<DoodleDash> {
   // Score indicates the score needed to be acheived to "level up"
   final Map<int, Difficulty> levelsConfig = {
     1: const Difficulty(
-        minDistance: 200, maxDistance: 250, jumpSpeed: 600, score: 0),
+        minDistance: 100, maxDistance: 200, jumpSpeed: 600, score: 0),
     2: const Difficulty(
-        minDistance: 200, maxDistance: 350, jumpSpeed: 650, score: 20),
+        minDistance: 100, maxDistance: 220, jumpSpeed: 600, score: 50),
     3: const Difficulty(
-        minDistance: 200, maxDistance: 450, jumpSpeed: 700, score: 40),
+        minDistance: 100, maxDistance: 240, jumpSpeed: 625, score: 100),
     4: const Difficulty(
-        minDistance: 200, maxDistance: 550, jumpSpeed: 750, score: 80),
+        minDistance: 100, maxDistance: 260, jumpSpeed: 625, score: 150),
     5: const Difficulty(
-        minDistance: 200, maxDistance: 650, jumpSpeed: 800, score: 100),
+        minDistance: 100, maxDistance: 280, jumpSpeed: 650, score: 200),
+    6: const Difficulty(
+        minDistance: 100, maxDistance: 300, jumpSpeed: 650, score: 250),
+    7: const Difficulty(
+        minDistance: 100, maxDistance: 320, jumpSpeed: 675, score: 300),
+    8: const Difficulty(
+        minDistance: 100, maxDistance: 340, jumpSpeed: 675, score: 350),
+    9: const Difficulty(
+        minDistance: 100, maxDistance: 360, jumpSpeed: 700, score: 400),
+    10: const Difficulty(
+        minDistance: 100, maxDistance: 380, jumpSpeed: 700, score: 450),
+    11: const Difficulty(
+        minDistance: 100, maxDistance: 400, jumpSpeed: 725, score: 500),
   };
 
   double get minDistance {
@@ -66,6 +78,7 @@ class LevelManager extends Component with HasGameRef<DoodleDash> {
   void increaseLevel() {
     if (level < levelsConfig.keys.length) {
       level++;
+      print("changing levels");
     }
   }
 

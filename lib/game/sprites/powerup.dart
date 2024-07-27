@@ -29,7 +29,7 @@ abstract class PowerUp extends SpriteComponent
 
 class Rocket extends PowerUp {
   @override
-  double get jumpSpeedMultiplier => 3.5;
+  double get jumpSpeedMultiplier => 3.0;
 
   Rocket({
     super.position,

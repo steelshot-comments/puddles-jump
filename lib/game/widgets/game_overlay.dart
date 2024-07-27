@@ -27,7 +27,7 @@ class GameOverlayState extends State<GameOverlay> {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      child: SafeAreagit (
+      child: SafeArea (
         child: Stack(
           children: [
             Positioned(

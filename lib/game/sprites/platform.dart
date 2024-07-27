@@ -30,7 +30,7 @@ abstract class Platform<T> extends SpriteGroupComponent<T>
   Platform({
     super.position,
   }) : super(
-          size: Vector2(100, 20),
+          size: Vector2(80, 15),
           priority: 2,
         );
 

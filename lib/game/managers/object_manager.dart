@@ -15,8 +15,8 @@ final Random _rand = Random();
 
 class ObjectManager extends Component with HasGameRef<DoodleDash> {
   ObjectManager({
-    this.minVerticalDistanceToNextPlatform = 200,
-    this.maxVerticalDistanceToNextPlatform = 250,
+    this.minVerticalDistanceToNextPlatform = 100, // Decreased from 200
+    this.maxVerticalDistanceToNextPlatform = 200, // Decreased from 250
   });
 
   double minVerticalDistanceToNextPlatform;
@@ -24,6 +24,7 @@ class ObjectManager extends Component with HasGameRef<DoodleDash> {
   final probGen = ProbabilityGenerator();
   final double _tallestPlatformHeight = 50;
   final List<Platform> _platforms = [];
+  final platWidth = 100;
 
   @override
   void onMount() {
@@ -36,7 +37,7 @@ class ObjectManager extends Component with HasGameRef<DoodleDash> {
 
     for (var i = 0; i < 9; i++) {
       if (i != 0) {
-        currentX = _generateNextX(100);
+        currentX = _generateNextX(platWidth);
         currentY = _generateNextY();
       }
       _platforms.add(
@@ -53,34 +54,35 @@ class ObjectManager extends Component with HasGameRef<DoodleDash> {
   }
 
   @override
-  void update(double dt) {
-    final topOfLowestPlatform =
-        _platforms.first.position.y + _tallestPlatformHeight;
+ void update(double dt) {
+  final topOfLowestPlatform =
+      _platforms.first.position.y + _tallestPlatformHeight;
 
-    final screenBottom = gameRef.player.position.y +
-        (gameRef.size.x / 2) +
-        gameRef.screenBufferSpace;
+  final screenBottom = gameRef.player.position.y +
+      (gameRef.size.x / 2) +  
+      gameRef.screenBufferSpace;
 
-    if (topOfLowestPlatform > screenBottom) {
-      var newPlatY = _generateNextY();
-      var newPlatX = _generateNextX(100);
-      final nextPlat = _semiRandomPlatform(Vector2(newPlatX, newPlatY));
-      add(nextPlat);
+  if (topOfLowestPlatform > screenBottom) {
+    var newPlatY = _generateNextY();
+    var newPlatX = _generateNextX(platWidth);
+    final nextPlat = _semiRandomPlatform(Vector2(newPlatX, newPlatY));
+    add(nextPlat);
 
-      _platforms.add(nextPlat);
+    _platforms.add(nextPlat);
 
-      gameRef.gameManager.increaseScore();
+    gameRef.gameManager.increaseScore();
 
-      _cleanupPlatforms();
-      _maybeAddEnemy();
-      _maybeAddPowerup();
-    }
-
-    super.update(dt);
+    _cleanupPlatforms();
+    _maybeAddEnemy();
+    _maybeAddPowerup();
   }
 
+  super.update(dt);
+}
+
+
   final Map<String, bool> specialPlatforms = {
-    'spring': true, // level 1
+    'spring': false, // level 1
     'broken': false, // level 2
     'noogler': false, // level 3
     'rocket': false, // level 4
@@ -99,19 +101,19 @@ class ObjectManager extends Component with HasGameRef<DoodleDash> {
 
   void enableLevelSpecialty(int level) {
     switch (level) {
-      case 1:
+      case 2:
         enableSpecialty('spring');
         break;
-      case 2:
+      case 3:
         enableSpecialty('broken');
         break;
-      case 3:
+      case 4:
         enableSpecialty('noogler');
         break;
-      case 4:
+      case 5:
         enableSpecialty('rocket');
         break;
-      case 5:
+      case 6:
         enableSpecialty('enemy');
         break;
     }
@@ -184,7 +186,7 @@ class ObjectManager extends Component with HasGameRef<DoodleDash> {
     }
     if (probGen.generateWithProbability(20)) {
       var enemy = EnemyPlatform(
-        position: Vector2(_generateNextX(100), _generateNextY()),
+        position: Vector2(_generateNextX(platWidth), _generateNextY()),
       );
       add(enemy);
       _enemies.add(enemy);
@@ -209,14 +211,14 @@ class ObjectManager extends Component with HasGameRef<DoodleDash> {
     if (specialPlatforms['noogler'] == true &&
         probGen.generateWithProbability(10)) {
       var nooglerHat = NooglerHat(
-        position: Vector2(_generateNextX(75), _generateNextY()),
+        position: Vector2(_generateNextX(platWidth), _generateNextY()),
       );
       add(nooglerHat);
       _powerups.add(nooglerHat);
     } else if (specialPlatforms['rocket'] == true &&
         probGen.generateWithProbability(5)) {
       var rocket = Rocket(
-        position: Vector2(_generateNextX(50), _generateNextY()),
+        position: Vector2(_generateNextX(platWidth), _generateNextY()),
       );
       add(rocket);
       _powerups.add(rocket);
